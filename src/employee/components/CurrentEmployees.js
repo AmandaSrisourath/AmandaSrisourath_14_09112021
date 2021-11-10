@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-function EmployeeList() {
+function CurrentEmployees() {
     return (
         <div id="employee-div" className="container">
             <h1>Current Employees</h1>
@@ -35,4 +35,4 @@ function EmployeeList() {
     )
 }
 
-export default EmployeeList;
+export default CurrentEmployees;
