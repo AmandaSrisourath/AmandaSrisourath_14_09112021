@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import CreateEmployee from "../employee/components/CreateEmployee";
-import CurrentEmployees from "../employee/components/CurrentEmployees";
+import EmployeeList from "../employee/components/EmployeeList";
 
 function App() {
   return (
@@ -16,8 +16,8 @@ function App() {
                   <CreateEmployee />
               </Route>
 
-              <Route path="/CurrentEmployees">
-                  <CurrentEmployees />
+              <Route path="/EmployeeList">
+                  <EmployeeList />
               </Route>
           </Switch>
       </Router>
