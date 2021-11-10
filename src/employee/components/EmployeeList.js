@@ -8,7 +8,7 @@ function CurrentEmployees() {
             <table id="employee-table" className="display"></table>
 
             {/*<div>*/}
-            {/*    $(function() {*/}
+            {/*    function() {*/}
             {/*        const employees = JSON.parse(localStorage.getItem('employees'));*/}
 
             {/*        $('#employee-table').DataTable({*/}
@@ -25,7 +25,7 @@ function CurrentEmployees() {
             {/*                { title: 'Zip Code', data: 'zipCode' },*/}
             {/*            ]*/}
             {/*        });*/}
-            {/*    });*/}
+            {/*    };*/}
             {/*</div>*/}
 
             <Link to={"/"}>
