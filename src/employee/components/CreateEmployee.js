@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function CreateEmployee() {
     return (
@@ -8,7 +9,10 @@ function CreateEmployee() {
             </div>
 
             <div className="container">
-                <a href="employee-list.html">View Current Employees</a>
+                <Link to={"/CurrentEmployees"}>
+                    <p>View Current Employees</p>
+                </Link>
+
                 <h2>Create Employee</h2>
 
                 <form action="#" id="create-employee">
@@ -19,10 +23,10 @@ function CreateEmployee() {
                     <input type="text" id="last-name"/>
 
                     <label htmlFor="date-of-birth">Date of Birth</label>
-                    <input id="date-of-birth" type="text">
+                    <input id="date-of-birth" type="text"/>
 
                     <label htmlFor="start-date">Start Date</label>
-                    <input id="start-date" type="text">
+                    <input id="start-date" type="text"/>
 
                     <fieldset className="address">
                         <legend>Address</legend>
@@ -34,7 +38,7 @@ function CreateEmployee() {
                         <input id="city" type="text"/>
 
                         <label htmlFor="state">State</label>
-                        {/*<select name="state" id="state"></select>*/}
+                        <select name="state" id="state"></select>
 
                         <label htmlFor="zip-code">Zip Code</label>
                         <input id="zip-code" type="number"/>
@@ -50,7 +54,7 @@ function CreateEmployee() {
                     </select>
                 </form>
 
-                <button onClick="saveEmployee()">Save</button>
+                <button className="save-button" onClick="saveEmployee()">Save</button>
             </div>
                 <div id="confirmation" className="modal">Employee Created!</div>
         </div>
