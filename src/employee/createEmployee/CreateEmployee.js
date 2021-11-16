@@ -1,24 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import DatePicker from "react-date-picker";
-import Modal from "react-modal";
-import Select from 'react-select';
+import Date from "./Date";
 import StateDropdown from "./StateDropdown";
 import DepartmentDropdown from "./DepartmentDropdown";
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-    },
-};
+import CreateEmployeeModal from "./Modal";
 
 function CreateEmployee() {
-    const [value, onChange] = useState('');
     const [modalIsOpen, setIsOpen] = useState(false);
 
     function openModal() {
@@ -50,10 +37,10 @@ function CreateEmployee() {
                     <input type="text" id="last-name"/>
 
                     <label htmlFor="date-of-birth">Date of Birth</label>
-                    <DatePicker onChange={onChange} value={value}/>
+                    <Date />
 
                     <label htmlFor="start-date">Start Date</label>
-                    <DatePicker onChange={onChange} value={value}/>
+                    <Date />
 
                     <fieldset className="address">
                         <legend>Address</legend>
@@ -78,14 +65,7 @@ function CreateEmployee() {
                 <button className="save-button" onClick={openModal}>Save</button>
             </div>
 
-            <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                style={customStyles}
-            >
-                {/*<button onClick={closeModal}>X</button>*/}
-                <h2 className="modal">Employee Created!</h2>
-            </Modal>
+            <CreateEmployeeModal isOpen={modalIsOpen} onRequestClose={closeModal}/>
         </div>
     )
 }
