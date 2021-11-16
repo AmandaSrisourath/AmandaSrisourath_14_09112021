@@ -5,8 +5,8 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import CreateEmployee from "../employee/components/CreateEmployee";
-import EmployeeList from "../employee/components/EmployeeList";
+import CreateEmployee from "../employee/createEmployee/CreateEmployee";
+import EmployeeList from "../employee/employeeList/EmployeeList";
 
 function App() {
   return (
