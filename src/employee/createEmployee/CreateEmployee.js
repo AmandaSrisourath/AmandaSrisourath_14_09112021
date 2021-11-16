@@ -1,7 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import DatePicker from "react-date-picker";
+import Modal from "react-modal";
+import Select from 'react-select';
+import StateDropdown from "./StateDropdown";
+import DepartmentDropdown from "./DepartmentDropdown";
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
 
 function CreateEmployee() {
+    const [value, onChange] = useState('');
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
     return (
         <div>
             <div className="title">
@@ -9,7 +36,7 @@ function CreateEmployee() {
             </div>
 
             <div className="container">
-                <Link to={"/CurrentEmployees"}>
+                <Link to={"/EmployeeList"}>
                     <p>View Current Employees</p>
                 </Link>
 
@@ -23,10 +50,10 @@ function CreateEmployee() {
                     <input type="text" id="last-name"/>
 
                     <label htmlFor="date-of-birth">Date of Birth</label>
-                    <input id="date-of-birth" type="text"/>
+                    <DatePicker onChange={onChange} value={value}/>
 
                     <label htmlFor="start-date">Start Date</label>
-                    <input id="start-date" type="text"/>
+                    <DatePicker onChange={onChange} value={value}/>
 
                     <fieldset className="address">
                         <legend>Address</legend>
@@ -38,25 +65,27 @@ function CreateEmployee() {
                         <input id="city" type="text"/>
 
                         <label htmlFor="state">State</label>
-                        <select name="state" id="state"></select>
+                        <StateDropdown />
 
                         <label htmlFor="zip-code">Zip Code</label>
                         <input id="zip-code" type="number"/>
                     </fieldset>
 
                     <label htmlFor="department">Department</label>
-                    <select name="department" id="department">
-                        <option>Sales</option>
-                        <option>Marketing</option>
-                        <option>Engineering</option>
-                        <option>Human Resources</option>
-                        <option>Legal</option>
-                    </select>
+                    <DepartmentDropdown />
                 </form>
 
-                <button className="save-button" onClick="saveEmployee()">Save</button>
+                <button className="save-button" onClick={openModal}>Save</button>
             </div>
-                <div id="confirmation" className="modal">Employee Created!</div>
+
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                style={customStyles}
+            >
+                {/*<button onClick={closeModal}>X</button>*/}
+                <h2 className="modal">Employee Created!</h2>
+            </Modal>
         </div>
     )
 }
