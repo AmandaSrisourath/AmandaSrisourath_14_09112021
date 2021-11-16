@@ -22,5 +22,6 @@ label {
 }
 
 .save-button {
-  margin: 12px;
+  margin: 8px;
+  cursor: pointer;
 }
