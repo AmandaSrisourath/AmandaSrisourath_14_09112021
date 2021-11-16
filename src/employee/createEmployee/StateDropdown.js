@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 
-function StateDropdown () {
+function StateDropdown() {
     const stateOptions = [
         { value: 'Alabama', label: 'Alabama' },
         { value: 'California', label: 'California' },
