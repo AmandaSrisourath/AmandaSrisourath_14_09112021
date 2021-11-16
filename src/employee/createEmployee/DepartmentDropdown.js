@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 
-function DepartmentDropdown () {
+function DepartmentDropdown() {
     const departmentOptions = [
         { value: 'Sales', label: 'Sales' },
         { value: 'Marketing', label: 'Marketing' },
