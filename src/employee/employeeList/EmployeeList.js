@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import EmployeeDataTable from "./EmployeeDataTable";
+import EmployeeTable from "./EmployeeTable";
 
 function EmployeeList() {
     return (
         <div id="employee-div" className="container">
             <h1>Current Employees</h1>
 
-            <EmployeeDataTable />
+            <EmployeeTable />
 
             <Link to={"/"}>
                 <p>Home</p>
