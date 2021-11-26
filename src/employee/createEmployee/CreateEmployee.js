@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Date from "./Date";
-import StateDropdown from "./StateDropdown";
+// import StateDropdown from "./StateDropdown";
 import DepartmentDropdown from "./DepartmentDropdown";
 import CreateEmployeeModal from "./Modal";
+import Dropdown from "./dropdown/Dropdown";
 
 function CreateEmployee() {
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -52,7 +53,8 @@ function CreateEmployee() {
                         <input id="city" type="text"/>
 
                         <label htmlFor="state">State</label>
-                        <StateDropdown />
+                        {/*<StateDropdown />*/}
+                        <Dropdown />
 
                         <label htmlFor="zip-code">Zip Code</label>
                         <input id="zip-code" type="number"/>
