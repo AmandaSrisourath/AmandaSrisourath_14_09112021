@@ -72,6 +72,7 @@ function QuickSearchToolbar(props) {
 function EmployeeTable() {
     const [searchText, setSearchText] = React.useState('');
     const [rows, setRows] = React.useState(data);
+    const [pageSize, setPageSize] = React.useState(5);
 
     const requestSearch = (searchValue) => {
         setSearchText(searchValue);
@@ -89,9 +90,13 @@ function EmployeeTable() {
     }, [data]);
 
     return (
-        <div style={{ height: 426, width: '90%' }}>
+        <div style={{ maxWidth: 1280, width:'90%' }}>
             <DataGrid
+                pageSize={pageSize}
+                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                rowsPerPageOptions={[5, 10, 15]}
                 pagination
+                autoHeight
                 components={{ Toolbar: QuickSearchToolbar }}
                 rows={rows}
                 columns={columns}
