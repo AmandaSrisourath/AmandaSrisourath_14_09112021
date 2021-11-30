@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Date from "./Date";
 import CreateEmployeeModal from "./Modal";
-import Dropdown from "./dropdown/Dropdown";
+import Dropdown from "./Dropdown";
 
 function CreateEmployee() {
     const [modalIsOpen, setIsOpen] = useState(false);
