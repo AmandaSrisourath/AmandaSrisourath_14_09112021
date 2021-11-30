@@ -1,12 +1,12 @@
-import '../App.css';
+import './App.css';
 import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import CreateEmployee from "../employee/createEmployee/CreateEmployee";
-import EmployeeList from "../employee/employeeList/EmployeeList";
+import CreateEmployee from "./pages/createEmployee/components/CreateEmployee";
+import EmployeeList from "./pages/employeeList/components/EmployeeList";
 
 function App() {
   return (
