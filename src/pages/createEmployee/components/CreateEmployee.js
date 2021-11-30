@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Date from "./Date";
-// import StateDropdown from "./StateDropdown";
-import DepartmentDropdown from "./DepartmentDropdown";
 import CreateEmployeeModal from "./Modal";
 import Dropdown from "./dropdown/Dropdown";
 
@@ -16,6 +14,22 @@ function CreateEmployee() {
     function closeModal() {
         setIsOpen(false);
     }
+
+    const stateOptions = [
+        { value: 'Alabama', label: 'Alabama' },
+        { value: 'California', label: 'California' },
+        { value: 'Florida', label: 'Florida' },
+        { value: 'Indiana', label: 'Indiana' },
+        { value: 'Massachusetts', label: 'Massachusetts' },
+    ];
+
+    const departmentOptions = [
+        { value: 'Sales', label: 'Sales' },
+        { value: 'Marketing', label: 'Marketing' },
+        { value: 'Engineering', label: 'Engineering' },
+        { value: 'Human Resources', label: 'Human Resources' },
+        { value: 'Legal', label: 'Legal' },
+    ];
 
     return (
         <div>
@@ -53,15 +67,14 @@ function CreateEmployee() {
                         <input id="city" type="text"/>
 
                         <label htmlFor="state">State</label>
-                        {/*<StateDropdown />*/}
-                        <Dropdown />
+                        <Dropdown options={stateOptions}/>
 
                         <label htmlFor="zip-code">Zip Code</label>
                         <input id="zip-code" type="number"/>
                     </fieldset>
 
                     <label htmlFor="department">Department</label>
-                    <DepartmentDropdown />
+                    <Dropdown options={departmentOptions}/>
                 </form>
 
                 <button className="save-button" onClick={openModal}>Save</button>

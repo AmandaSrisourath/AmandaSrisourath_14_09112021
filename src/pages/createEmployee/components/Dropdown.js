@@ -1,45 +1,37 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Dropdown() {
-    // const [selectedOption, setSelectedOption] = useState('');
+function Dropdown(props) {
     const [isOpen, setIsOpen] = useState(false);
-
-    const options = [
-        { value: 'Alabama', label: 'Alabama' },
-        { value: 'California', label: 'California' },
-        { value: 'Florida', label: 'Florida' },
-        { value: 'Indiana', label: 'Indiana' },
-        { value: 'Massachusetts', label: 'Massachusetts' },
-    ];
+    const [selectedOption, setSelectedOption] = useState({ label: 'Options' });
+    const { options } = props;
 
     const switchIsOpen = () => {
         setIsOpen(!isOpen);
     }
 
+    const handleClick = (e) => {
+        const option = options.find(opt => opt.value === e.target.getAttribute("data-value"));
+        setSelectedOption(option);
+    }
+
     return (
         <div>
             <Button type="text" name="select" onClick={switchIsOpen}>
-                <label>
-                    <p>Options</p>
-                </label>
+                {selectedOption.label}
                 { isOpen ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} /> }
             </Button>
 
             {
-                isOpen && (
-                    // <div
-                    //     defaultValue={selectedOption}
-                    //     onChange={setSelectedOption}
-                    //     options={options}
-                    // >
-                    // </div>
-
-                    <Select>
+                isOpen &&
+                (
+                    <Select onClick={handleClick}>
                         {options.map((option) => (
-                            <Paragraph>{option.label}</Paragraph>
+                            <Paragraph key={option.label} data-value={option.value}>
+                                {option.label}
+                            </Paragraph>
                         ))}
                     </Select>
                 )
@@ -57,7 +49,7 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   background: #FFEAAD;
-  width: 153px;
+  width: 100%;
   height: 50px;
   cursor: pointer;
 `;
@@ -65,14 +57,14 @@ const Button = styled.button`
 const Select = styled.div`
   border-radius: 5px;
   box-shadow: 5px 10px 18px #888888;
-  width: 153px;
+  width: 100%;
   cursor: pointer;
 `;
 
 const Paragraph = styled.p`
   padding: 16px;
   margin: 0;
-  
+
   &:hover {
     background: #FFEAAD;
     border-radius: 5px;
