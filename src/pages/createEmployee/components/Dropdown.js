@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import styled from "@emotion/styled";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styled from "@emotion/styled";
 
 function Dropdown(props) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState({ label: 'Options' });
     const { options } = props;
 
-    const switchIsOpen = () => {
+    const switchIsOpen = (e) => {
+        e.preventDefault();
         setIsOpen(!isOpen);
     }
 
@@ -29,7 +30,7 @@ function Dropdown(props) {
                 (
                     <Select onClick={handleClick}>
                         {options.map((option) => (
-                            <Paragraph key={option.label} data-value={option.value}>
+                            <Paragraph key={option.label} data-value={option.value} onClick={switchIsOpen}>
                                 {option.label}
                             </Paragraph>
                         ))}
@@ -46,29 +47,33 @@ const Button = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 4px;
+  background: #f1f2fa;
   border: none;
-  border-radius: 5px;
-  background: #FFEAAD;
   width: 100%;
   height: 50px;
   cursor: pointer;
-`;
+`
 
 const Select = styled.div`
-  border-radius: 5px;
+  border-radius: 4px;
   box-shadow: 5px 10px 18px #888888;
   width: 100%;
   cursor: pointer;
-`;
+  
+  //position: absolute;
+  //min-width: 295px;
+  //max-width: 325px;
+`
 
 const Paragraph = styled.p`
   padding: 16px;
   margin: 0;
 
   &:hover {
-    background: #FFEAAD;
-    border-radius: 5px;
+    background: #f1f2fa;
+    border-radius: 4px;
   }
-`;
+`
 
 export default Dropdown;
