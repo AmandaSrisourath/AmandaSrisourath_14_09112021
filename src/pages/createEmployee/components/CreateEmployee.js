@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import Date from "./Date";
 import CreateEmployeeModal from "./Modal";
 import Dropdown from "./Dropdown";
+import styled from "@emotion/styled";
+import Header from "../../Header";
 
 function CreateEmployee() {
     const [modalIsOpen, setIsOpen] = useState(false);
 
-    function openModal() {
+    function openModal(e) {
+        e.preventDefault();
         setIsOpen(true);
     }
 
@@ -33,56 +35,133 @@ function CreateEmployee() {
 
     return (
         <div>
-            <div className="title">
-                <h1>HRnet</h1>
-            </div>
+            <Header/>
 
-            <div className="container">
-                <Link to={"/EmployeeList"}>
-                    <p>View Current Employees</p>
-                </Link>
+            <Container>
+                <Form>
+                    <Subtitle>Create Employee</Subtitle>
 
-                <h2>Create Employee</h2>
+                    <Field>
+                        <div>
+                            <Label htmlFor="first-name">First Name</Label>
+                            <Input type="text" id="first-name"/>
+                        </div>
 
-                <form action="#" id="create-employee">
-                    <label htmlFor="first-name">First Name</label>
-                    <input type="text" id="first-name"/>
+                        <div>
+                            <Label htmlFor="last-name">Last Name</Label>
+                            <Input type="text" id="last-name"/>
+                        </div>
+                    </Field>
 
-                    <label htmlFor="last-name">Last Name</label>
-                    <input type="text" id="last-name"/>
+                    <Field>
+                        <div>
+                            <Label htmlFor="date-of-birth">Date of Birth</Label>
+                            <Date />
+                        </div>
 
-                    <label htmlFor="date-of-birth">Date of Birth</label>
-                    <Date />
+                        <div>
+                            <Label htmlFor="start-date">Start Date</Label>
+                            <Date />
+                        </div>
+                    </Field>
 
-                    <label htmlFor="start-date">Start Date</label>
-                    <Date />
-
-                    <fieldset className="address">
+                    <Fieldset>
                         <legend>Address</legend>
 
-                        <label htmlFor="street">Street</label>
-                        <input id="street" type="text"/>
+                        <div>
+                            <Label htmlFor="street">Street</Label>
+                            <Input id="street" type="text"/>
+                        </div>
 
-                        <label htmlFor="city">City</label>
-                        <input id="city" type="text"/>
+                        <div>
+                            <Label htmlFor="city">City</Label>
+                            <Input id="city" type="text"/>
+                        </div>
 
-                        <label htmlFor="state">State</label>
+                        <Label htmlFor="state">State</Label>
                         <Dropdown options={stateOptions}/>
 
-                        <label htmlFor="zip-code">Zip Code</label>
-                        <input id="zip-code" type="number"/>
-                    </fieldset>
+                        <div>
+                            <Label htmlFor="zip-code">Zip Code</Label>
+                            <Input id="zip-code" type="number"/>
+                        </div>
+                    </Fieldset>
 
-                    <label htmlFor="department">Department</label>
+                    <Label htmlFor="department">Department</Label>
                     <Dropdown options={departmentOptions}/>
-                </form>
 
-                <button className="save-button" onClick={openModal}>Save</button>
-            </div>
+                    <ContainerBtn>
+                        <SaveBtn className="save-button" onClick={openModal}>Save</SaveBtn>
+                    </ContainerBtn>
+                </Form>
+            </Container>
 
             <CreateEmployeeModal isOpen={modalIsOpen} onRequestClose={closeModal}/>
         </div>
     )
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+const Form = styled.form`
+  box-shadow: 5px 10px 18px #888888;
+  background-color: white;
+  padding: 8px 40px 32px;
+  border-radius: 4px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  width: 325px;
+`
+
+const Subtitle = styled.h2`
+    text-align: center;
+`
+
+const Field = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const Label = styled.label`
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 8px;
+`
+
+const Input = styled.input`
+  background-color: #f1f2fa;
+  border-radius: 4px;
+  border: none;
+  height: 40px;
+  width: 100%;
+  outline: none;
+`
+
+const Fieldset = styled.fieldset`
+  margin-top: 16px;
+  border: 1px solid black;
+  border-radius: 5px;
+`
+
+const ContainerBtn = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const SaveBtn = styled.button`
+  width: 100%;
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 4px;
+  border: none;
+  background-color: #c5cefb;
+  font-weight: bold;
+  cursor: pointer;
+`
 
 export default CreateEmployee;
