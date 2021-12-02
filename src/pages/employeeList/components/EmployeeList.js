@@ -71,7 +71,7 @@ function QuickSearchToolbar(props) {
     );
 }
 
-function EmployeeTable() {
+function EmployeeList() {
     const [searchText, setSearchText] = React.useState('');
     const [rows, setRows] = React.useState(data);
     const [pageSize, setPageSize] = React.useState(5);
@@ -94,29 +94,32 @@ function EmployeeTable() {
     return (
         <div>
             <Header/>
-            <h2>Current Employees</h2>
 
             <Container>
-                <div style={{ maxWidth: 1280, width:'90%' }}>
-                    <DataGrid
-                        pageSize={pageSize}
-                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                        rowsPerPageOptions={[5, 10, 15]}
-                        pagination
-                        autoHeight
-                        components={{ Toolbar: QuickSearchToolbar }}
-                        rows={rows}
-                        columns={columns}
-                        componentsProps={{
-                            toolbar: {
-                                value: searchText,
-                                onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-                                    requestSearch(event.target.value),
-                                clearSearch: () => requestSearch(''),
-                            },
-                        }}
-                    />
-                </div>
+                <Table>
+                    <Subtitle>Current Employees</Subtitle>
+
+                    <div>
+                        <DataGrid
+                            pageSize={pageSize}
+                            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                            rowsPerPageOptions={[5, 10, 15]}
+                            pagination
+                            autoHeight
+                            components={{ Toolbar: QuickSearchToolbar }}
+                            rows={rows}
+                            columns={columns}
+                            componentsProps={{
+                                toolbar: {
+                                    value: searchText,
+                                    onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+                                        requestSearch(event.target.value),
+                                    clearSearch: () => requestSearch(''),
+                                },
+                            }}
+                        />
+                    </div>
+                </Table>
             </Container>
         </div>
     );
@@ -129,4 +132,19 @@ const Container = styled.div`
   justify-content: center;
 `
 
-export default EmployeeTable;
+const Subtitle = styled.h2`
+    text-align: center;
+`
+
+const Table = styled.div`
+  box-shadow: 5px 10px 18px #888888;
+  background-color: white;
+  padding: 8px 32px 32px;
+  border-radius: 4px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  width: 90%;
+  max-width: 1280px;
+`
+
+export default EmployeeList;
