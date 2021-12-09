@@ -364,13 +364,13 @@ const data = [
 const columns = [
     { field: 'firstName', headerName: 'First Name', width: 142 },
     { field: 'lastName', headerName: 'Last Name', width: 142 },
-    { field: 'startDate', headerName: 'Start Date', width: 142 },
-    { field: 'department', headerName: 'Department', width: 142 },
     { field: 'dateOfBirth', headerName: 'Date Of Birth', width: 142 },
+    { field: 'startDate', headerName: 'Start Date', width: 142 },
     { field: 'street', headerName: 'Street', width: 142 },
     { field: 'city', headerName: 'City', width: 142 },
     { field: 'state', headerName: 'State', width: 142 },
     { field: 'zipCode', headerName: 'Zip Code', width: 142 },
+    { field: 'department', headerName: 'Department', width: 142 },
 ]
 
 export { data, columns };

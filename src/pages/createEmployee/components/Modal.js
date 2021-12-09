@@ -17,6 +17,7 @@ function CreateEmployeeModal(props) {
 
     return (
         <Modal
+            ariaHideApp={false}
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             style={customStyles}
