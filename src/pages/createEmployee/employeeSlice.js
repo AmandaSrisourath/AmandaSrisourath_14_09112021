@@ -1,21 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { data, columns } from "../employeeList/data";
 
 const initialState = {
-    infos: { id: '', firstName: '', lastName: '', dateOfBirth: '', startDate: '', street: '', city: '', state: '', zipCode: '', department: ''}
+    list: data,
+    columnsList: columns
 };
 
 const employeeSlice = createSlice({
     name: 'employee',
     initialState,
     reducers: {
-        setInfos: (state, action) => {
-            state.infos = {
-                ...state.infos,
-                ...action.payload,
-            };
+        addEmployee: (state, action) => {
+            state.list = [
+                ...state.list,
+                action.payload,
+            ];
         }
     },
 });
 
-export const { setInfos } = employeeSlice.actions;
+export const { addEmployee } = employeeSlice.actions;
 export default employeeSlice.reducer;
