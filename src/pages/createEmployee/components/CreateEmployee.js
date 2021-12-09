@@ -1,20 +1,77 @@
 import React, { useState } from "react";
-import Date from "./Date";
-import CreateEmployeeModal from "./Modal";
-import Dropdown from "./Dropdown";
 import styled from "@emotion/styled";
+import { useDispatch } from "react-redux";
+import { addEmployee } from "../employeeSlice";
+import { format } from "date-fns";
 import Header from "../../Header";
+import DatePicker from "react-date-picker";
+import Dropdown from "./Dropdown";
+import CreateEmployeeModal from "./Modal";
 
 function CreateEmployee() {
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [id, setId] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [street, setStreet] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zipCode, setZipCode] =useState('');
+    const [department, setDepartment] = useState('');
+    const dispatch = useDispatch();
 
     function openModal(e) {
         e.preventDefault();
         setIsOpen(true);
+        const date = new Date(dateOfBirth);
+        const formattedDate = format(date, "dd/MM/yyyy");
+        const dateStarted = new Date(startDate);
+        const formattedDateStarted = format(dateStarted, "dd/MM/yyyy");
+        const newEmployee = { id, firstName, lastName, dateOfBirth: formattedDate, startDate: formattedDateStarted, street, city, state, zipCode, department };
+        dispatch(addEmployee(newEmployee));
+        setId(id);
     }
 
     function closeModal() {
         setIsOpen(false);
+    }
+
+    const onEditFirstName = (e) => {
+        setFirstName(e.target.value);
+    }
+
+    const onEditLastName = (e) => {
+        setLastName(e.target.value);
+    }
+
+    const onEditDateOfBirth = (value) => {
+        setDateOfBirth(value);
+    }
+
+    const onEditStartDate = (value) => {
+        setStartDate(value);
+    }
+
+    const onEditStreet = (e) => {
+        setStreet(e.target.value);
+    }
+
+    const onEditCity = (e) => {
+        setCity(e.target.value);
+    }
+
+    const onEditState = (value) => {
+        setState(value);
+    }
+
+    const onEditZipCode = (e) => {
+        setZipCode(e.target.value);
+    }
+
+    const onEditDepartment = (value) => {
+        setDepartment(value);
     }
 
     const stateOptions = [
@@ -44,24 +101,24 @@ function CreateEmployee() {
                     <Field>
                         <div>
                             <Label htmlFor="first-name">First Name</Label>
-                            <Input type="text" id="first-name"/>
+                            <InputName type="text" id="first-name" onChange={onEditFirstName} value={firstName}/>
                         </div>
 
                         <div>
                             <Label htmlFor="last-name">Last Name</Label>
-                            <Input type="text" id="last-name"/>
+                            <InputName type="text" id="last-name" onChange={onEditLastName} value={lastName}/>
                         </div>
                     </Field>
 
                     <Field>
                         <div>
                             <Label htmlFor="date-of-birth">Date of Birth</Label>
-                            <Date />
+                            <DatePicker onChange={onEditDateOfBirth} value={dateOfBirth}/>
                         </div>
 
                         <div>
                             <Label htmlFor="start-date">Start Date</Label>
-                            <Date />
+                            <DatePicker onChange={onEditStartDate} value={startDate}/>
                         </div>
                     </Field>
 
@@ -70,25 +127,25 @@ function CreateEmployee() {
 
                         <div>
                             <Label htmlFor="street">Street</Label>
-                            <Input id="street" type="text"/>
+                            <Input id="street" type="text" onChange={onEditStreet} value={street}/>
                         </div>
 
                         <div>
                             <Label htmlFor="city">City</Label>
-                            <Input id="city" type="text"/>
+                            <Input id="city" type="text" onChange={onEditCity} value={city}/>
                         </div>
 
                         <Label htmlFor="state">State</Label>
-                        <Dropdown options={stateOptions}/>
+                        <Dropdown options={stateOptions} onChange={onEditState} value={state}/>
 
                         <div>
                             <Label htmlFor="zip-code">Zip Code</Label>
-                            <Input id="zip-code" type="number"/>
+                            <Input id="zip-code" type="number" onChange={onEditZipCode} value={zipCode}/>
                         </div>
                     </Fieldset>
 
                     <Label htmlFor="department">Department</Label>
-                    <Dropdown options={departmentOptions}/>
+                    <Dropdown options={departmentOptions} onChange={onEditDepartment} value={department}/>
 
                     <ContainerBtn>
                         <SaveBtn className="save-button" onClick={openModal}>Save</SaveBtn>
@@ -111,15 +168,16 @@ const Container = styled.div`
 const Form = styled.form`
   box-shadow: 5px 10px 18px #888888;
   background-color: white;
-  padding: 8px 40px 32px;
+  padding: 8px 24px 24px;
   border-radius: 4px;
   margin-top: 32px;
   margin-bottom: 32px;
-  width: 325px;
+  width: 322px;
 `
 
 const Subtitle = styled.h2`
-    text-align: center;
+  text-align: center;
+  margin: 16px 0;
 `
 
 const Field = styled.div`
@@ -134,11 +192,24 @@ const Label = styled.label`
 `
 
 const Input = styled.input`
+  font-size: 16px;
   background-color: #f1f2fa;
   border-radius: 4px;
   border: none;
   height: 40px;
-  width: 100%;
+  width: 263px;
+  padding: 0 16px;
+  outline: none;
+`
+
+const InputName = styled.input`
+  font-size: 16px;
+  background-color: #f1f2fa;
+  border-radius: 4px;
+  border: none;
+  height: 40px;
+  width: 122.07px;
+  padding: 0 16px;
   outline: none;
 `
 
