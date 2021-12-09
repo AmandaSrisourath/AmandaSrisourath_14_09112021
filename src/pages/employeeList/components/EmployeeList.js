@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSelector } from "react-redux";
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import { DataGrid } from '@mui/x-data-grid';
@@ -6,9 +7,8 @@ import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
 import { createTheme } from '@mui/material/styles';
 import { createStyles, makeStyles } from '@mui/styles';
-import { data, columns } from "../data";
-import Header from "../../Header";
 import styled from "@emotion/styled";
+import Header from "../../Header";
 
 function escapeRegExp(value) {
     return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
@@ -72,14 +72,16 @@ function QuickSearchToolbar(props) {
 }
 
 function EmployeeList() {
+    const employeeList = useSelector((state) => state.employee.list);
+    const columns = useSelector((state) => state.employee.columnsList);
     const [searchText, setSearchText] = React.useState('');
-    const [rows, setRows] = React.useState(data);
+    const [rows, setRows] = React.useState(employeeList);
     const [pageSize, setPageSize] = React.useState(5);
 
     const requestSearch = (searchValue) => {
         setSearchText(searchValue);
         const searchRegex = new RegExp(escapeRegExp(searchValue), 'i');
-        const filteredRows = data.filter((row) => {
+        const filteredRows = employeeList.filter((row) => {
             return Object.keys(row).some((field) => {
                 return searchRegex.test(row[field].toString());
             });
@@ -88,8 +90,8 @@ function EmployeeList() {
     };
 
     React.useEffect(() => {
-        setRows(data);
-    }, [data]);
+        setRows(employeeList);
+    }, [employeeList]);
 
     return (
         <div>
@@ -133,13 +135,14 @@ const Container = styled.div`
 `
 
 const Subtitle = styled.h2`
-    text-align: center;
+  text-align: center;
+  margin: 16px 0;
 `
 
 const Table = styled.div`
   box-shadow: 5px 10px 18px #888888;
   background-color: white;
-  padding: 8px 32px 32px;
+  padding: 8px 16px 24px;
   border-radius: 4px;
   margin-top: 32px;
   margin-bottom: 32px;
