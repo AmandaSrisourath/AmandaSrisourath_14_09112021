@@ -66,7 +66,7 @@ const Button = styled.button`
   background: #f1f2fa;
   border: none;
   width: 100%;
-  height: 48px;
+  height: 40px;
   cursor: pointer;
 `
 
@@ -76,11 +76,13 @@ const Select = styled.div`
   border-radius: 4px;
   box-shadow: 5px 10px 18px #888888;
   width: ${props => props.width ? `${props.width}px` : '300px'};
+  height: 160px;
+  overflow: auto;
   cursor: pointer;
 `
 
 const Paragraph = styled.p`
-  padding: 16px;
+  padding: 11px 16px;
   margin: 0;
 
   &:hover {
