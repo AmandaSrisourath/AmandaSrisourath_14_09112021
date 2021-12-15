@@ -6,7 +6,6 @@ import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 function Dropdown(props) {
     const ref = useRef();
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState({ label: 'Options' });
     const { options, onChange, value } = props;
 
     const switchIsOpen = (e) => {
@@ -16,7 +15,6 @@ function Dropdown(props) {
 
     const handleClick = (e) => {
         const option = options.find(opt => opt.value === e.target.getAttribute("data-value"));
-        setSelectedOption(option);
         onChange(option.value);
     }
 
@@ -36,14 +34,16 @@ function Dropdown(props) {
     return (
         <div ref={ref}>
             <Button type="text" name="select" onClick={switchIsOpen}>
-                {selectedOption.label}
+
+                { !value ? <p>Options</p> : value }
+
                 { isOpen ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} /> }
             </Button>
 
             {
                 isOpen &&
                 (
-                    <Select onClick={handleClick} value={value} width={ref.current && ref.current.offsetWidth}>
+                    <Select onClick={handleClick} width={ref.current && ref.current.offsetWidth}>
                         {options.map((option) => (
                             <Paragraph key={option.label} data-value={option.value} onClick={switchIsOpen}>
                                 {option.label}
@@ -76,7 +76,7 @@ const Select = styled.div`
   border-radius: 4px;
   box-shadow: 5px 10px 18px #888888;
   width: ${props => props.width ? `${props.width}px` : '300px'};
-  height: 160px;
+  height: 120px;
   overflow: auto;
   cursor: pointer;
 `
