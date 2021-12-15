@@ -29,9 +29,18 @@ function CreateEmployee() {
         const formattedDate = format(date, "dd/MM/yyyy");
         const dateStarted = new Date(startDate);
         const formattedDateStarted = format(dateStarted, "dd/MM/yyyy");
-        const newEmployee = { id, firstName, lastName, dateOfBirth: formattedDate, startDate: formattedDateStarted, street, city, state, zipCode, department };
+        const newEmployee = { id: new Date().getTime(), firstName, lastName, dateOfBirth: formattedDate, startDate: formattedDateStarted, street, city, state: state.slice(0, 2).toUpperCase(), zipCode, department };
         dispatch(addEmployee(newEmployee));
         setId(id);
+        setFirstName('');
+        setLastName('');
+        setDateOfBirth('');
+        setStartDate('');
+        setDepartment('');
+        setStreet('');
+        setCity('');
+        setState('');
+        setZipCode('');
     }
 
     function closeModal() {
@@ -205,7 +214,7 @@ function CreateEmployee() {
                 </Form>
             </Container>
 
-            <CreateEmployeeModal isOpen={modalIsOpen} onRequestClose={closeModal}/>
+            <CreateEmployeeModal isOpen={modalIsOpen} onRequestClose={closeModal} onClick={closeModal}/>
         </div>
     )
 }

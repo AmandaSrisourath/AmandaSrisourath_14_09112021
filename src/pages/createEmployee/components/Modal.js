@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import styled from "@emotion/styled";
 
 const customStyles = {
     content: {
@@ -13,7 +14,7 @@ const customStyles = {
 };
 
 function CreateEmployeeModal(props) {
-    const { isOpen, onRequestClose } = props;
+    const { isOpen, onRequestClose, onClick } = props;
 
     return (
         <Modal
@@ -22,10 +23,21 @@ function CreateEmployeeModal(props) {
             onRequestClose={onRequestClose}
             style={customStyles}
         >
-            {/*<button onClick={closeModal}>X</button>*/}
+            <Button onClick={onClick}>X</Button>
             <h2 className="modal">Employee Created!</h2>
         </Modal>
     )
 }
+
+const Button = styled.button`
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #c5cefb;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+`
 
 export default CreateEmployeeModal;
