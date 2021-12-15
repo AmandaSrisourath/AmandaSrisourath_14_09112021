@@ -1,7 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
 import styled from "@emotion/styled";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import PropTypes, { object } from "prop-types";
 
 function Dropdown(props) {
     const ref = useRef();
@@ -34,7 +35,6 @@ function Dropdown(props) {
     return (
         <div ref={ref}>
             <Button type="text" name="select" onClick={switchIsOpen}>
-
                 { !value ? <p>Options</p> : value }
 
                 { isOpen ? <FontAwesomeIcon icon={faAngleUp} /> : <FontAwesomeIcon icon={faAngleDown} /> }
@@ -54,6 +54,12 @@ function Dropdown(props) {
             }
         </div>
     );
+}
+
+Dropdown.propTypes = {
+    options: PropTypes.arrayOf(object),
+    onChange: PropTypes.func,
+    value: PropTypes.string
 }
 
 const Button = styled.button`

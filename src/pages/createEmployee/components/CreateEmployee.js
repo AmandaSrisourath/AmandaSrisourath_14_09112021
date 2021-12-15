@@ -6,10 +6,10 @@ import { format } from "date-fns";
 import Header from "../../Header";
 import DatePicker from "react-date-picker";
 import Dropdown from "./Dropdown";
-import CreateEmployeeModal from "./Modal";
+import ModalCreateEmployee from "./ModalCreateEmployee";
 
 function CreateEmployee() {
-    const [modalIsOpen, setIsOpen] = useState(false);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const [id, setId] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -24,7 +24,7 @@ function CreateEmployee() {
 
     function openModal(e) {
         e.preventDefault();
-        setIsOpen(true);
+        setModalIsOpen(true);
         const date = new Date(dateOfBirth);
         const formattedDate = format(date, "dd/MM/yyyy");
         const dateStarted = new Date(startDate);
@@ -44,7 +44,7 @@ function CreateEmployee() {
     }
 
     function closeModal() {
-        setIsOpen(false);
+        setModalIsOpen(false);
     }
 
     const onEditFirstName = (e) => {
@@ -214,7 +214,7 @@ function CreateEmployee() {
                 </Form>
             </Container>
 
-            <CreateEmployeeModal isOpen={modalIsOpen} onRequestClose={closeModal} onClick={closeModal}/>
+            <ModalCreateEmployee isOpen={modalIsOpen} onRequestClose={closeModal} onClick={closeModal}/>
         </div>
     )
 }

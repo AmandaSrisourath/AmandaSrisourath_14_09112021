@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import styled from "@emotion/styled";
+import PropTypes from "prop-types";
 
 const customStyles = {
     content: {
@@ -13,7 +14,7 @@ const customStyles = {
     },
 };
 
-function CreateEmployeeModal(props) {
+function ModalCreateEmployee(props) {
     const { isOpen, onRequestClose, onClick } = props;
 
     return (
@@ -29,6 +30,12 @@ function CreateEmployeeModal(props) {
     )
 }
 
+ModalCreateEmployee.propTypes = {
+    isOpen: PropTypes.bool,
+    onRequestClose: PropTypes.func,
+    onClick: PropTypes.func
+}
+
 const Button = styled.button`
   position: absolute;
   right: 0;
@@ -40,4 +47,4 @@ const Button = styled.button`
   cursor: pointer;
 `
 
-export default CreateEmployeeModal;
+export default ModalCreateEmployee;
