@@ -5,7 +5,7 @@ import { addEmployee } from "../employeeSlice";
 import { format } from "date-fns";
 import Header from "../../Header";
 import DatePicker from "react-date-picker";
-import Dropdown from "./Dropdown";
+import Dropdown from "basic-react-dropdown";
 import ModalCreateEmployee from "./ModalCreateEmployee";
 
 function CreateEmployee() {

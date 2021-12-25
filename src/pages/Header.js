@@ -14,19 +14,19 @@ function Header() {
             </div>
             {
                 location.pathname === "/" ? (
-                    <Link to={"/EmployeeList"}>
+                    <CustomLink to={"/EmployeeList"}>
                         <Icon>
                             <FontAwesomeIcon icon={faUsers}/>
-                            {/*<p>View Current Employees</p>*/}
+                            <LinkName>Employees</LinkName>
                         </Icon>
-                    </Link>
+                    </CustomLink>
                 ) : (
-                    <Link to={"/"}>
+                    <CustomLink to={"/"}>
                         <Icon>
                             <FontAwesomeIcon icon={faHome}/>
-                            {/*<p>Home</p>*/}
+                            <LinkName>Home</LinkName>
                         </Icon>
-                    </Link>
+                    </CustomLink>
                 )
             }
         </Nav>
@@ -52,6 +52,18 @@ const Icon = styled.div`
   align-items: center;
   color: black;
   font-size: 24px;
+`
+
+const LinkName = styled.span`
+  color: black;
+  font-size: 16px;
+  padding-left: 8px;
+  text-transform: uppercase;
+  font-weight: 600;
+`
+
+const CustomLink = styled(Link)`
+  text-decoration: none;
 `
 
 export default Header;
