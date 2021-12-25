@@ -5,12 +5,14 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import CreateEmployee from "./pages/createEmployee/components/CreateEmployee";
-import EmployeeList from "./pages/employeeList/components/EmployeeList";
+import loadable from '@loadable/component'
+
+const CreateEmployee = loadable(() => import("./pages/createEmployee/components/CreateEmployee"))
+const EmployeeList = loadable(() => import("./pages/employeeList/components/EmployeeList"))
 
 function App() {
   return (
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
           <Switch>
               <Route exact path="/">
                   <CreateEmployee />
