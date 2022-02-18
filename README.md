@@ -1,18 +1,5 @@
 # Convert a jQuery library to React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Getting started
-In the project directory, you can run:
-
-```
-npm start
-```
-
-```
-npm test
-```
-
 ## What did I do
 
 1. Conversion of the HRNet project
