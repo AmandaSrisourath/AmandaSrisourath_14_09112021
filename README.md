@@ -1,14 +1,8 @@
-# Convert a jQuery library to React
+![](https://github.com/AmandaSrisourath/Kasa/blob/main/src/Assets/logo.png)
+
+# Develop a web application with React and React Router
 
 ## What did I do
-
-1. Conversion of the HRNet project
-- New version of the "Create Employee" and "Employee List" pages with React.
-- Added a state management system.
-- Make sure everything is consistent in style.
-- Test the React code with a unit test suite.
-
-2. Conversion of drop-down menus
-- Publishing the [React component](https://www.npmjs.com/package/basic-react-dropdown) on npm as a package 
-
-3. Performance tests with Lighthouse
+- Developing web application routes with React Router
+- Initializing a web application with a framework
+- Creating components with React
